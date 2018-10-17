@@ -1,0 +1,96 @@
+{%  extends 'base.html' %}
+
+{% block title %}{% endblock %}
+{%  block custom_css %}{% endblock %}
+{% block custom_js %}
+    <!-- iCheck -->
+    <script src="/static/js/plugins/iCheck/icheck.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('.i-checks').iCheck({
+                    checkboxClass: 'icheckbox_square-green',
+                    radioClass: 'iradio_square-green',
+                });
+            });
+        </script>
+{% endblock %}
+{% block content %}
+     <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-10">
+                    <h2>Basic Form</h2>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="{% url 'index' %}">Home</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a href="{% url 'host:host' %}">Host</a>
+                        </li>
+                        <li class="breadcrumb-item active">
+                            <strong>添加主机</strong>
+                        </li>
+                    </ol>
+                </div>
+                <div class="col-lg-2">
+
+                </div>
+            </div>
+     <div class="wrapper wrapper-content animated fadeInRight">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox ">
+                        <div class="ibox-title">
+                            <h5>主机添加修改</h5>
+                            <div class="ibox-tools">
+                                <a class="collapse-link">
+                                    <i class="fa fa-chevron-up"></i>
+                                </a>
+                                <a class="close-link">
+                                    <i class="fa fa-times"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="ibox-content">
+                         <form method="post"  action="{% url 'host:host_add' %}" class="form-horizontal">{% csrf_token %}
+
+                        {%  for field in form %}
+                            <div class="form-group">
+                                {% if field.field.required %}
+                                <label class="col-sm-2 control-label">{{ field.label }}:</label>
+                                {% else %}
+                                <label style="font-weight:normal" class="col-sm-2 control-label">{{ field.label }}:</label>
+                                {% endif %}
+                                <div class="col-sm-10">
+                                    {{ field }}
+                                    <span style="color:green" class="help-block m-b-none" >{{ field.help_text }}</span>
+
+                                    <span style="color:red" class="has-error m-b-none" >{{ field.errors}}</span>
+
+
+                                </div>
+
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                                 {% endfor %}
+
+                            <div class="form-group">
+                                <div class="col-sm-4 col-sm-offset-2">
+                                    <button class="btn btn-primary" type="submit">保存内容</button>
+                                    <button class="btn btn-white" type="submit" id="exit_add">取消</button>
+                                </div>
+                            </div>
+                        </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}
+
+
+
+
+
+
+
+
