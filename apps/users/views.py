@@ -11,7 +11,7 @@ from django.core.urlresolvers import reverse
 
 
 class CustomBackend(ModelBackend):
-    def authenticate(self, request, username=None, password=None, **kwargs):
+    def authenticate(self,username=None, password=None, **kwargs):
         try:
             user = UserProfile.objects.get(Q(username=username)|Q(email=username))
             if user.check_password(password):

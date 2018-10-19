@@ -75,8 +75,8 @@ def minion_status():
     else:
         try:
             id_list.extend(minion_data['return'][0]['up'])
-            saltapi.grains_append_api()
-            grains_data = saltapi.grains_items_api(tgt=id_list, expr_form='list')
+            saltapi.grains_append_api(tgt=id_list)
+            grains_data = saltapi.grains_items_api(tgt=id_list, tgt_type='list')
             # 这里获取了所有minion的grains内容，如果以后表字段有增加就从这里取方便
             for key, value in grains_data['return'][0].items():
                 minion_id = key

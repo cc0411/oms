@@ -8,7 +8,7 @@ class MinionList(models.Model):
     minion_version = models.CharField(max_length=20, verbose_name='Minion版本', blank=True, null=True)
     system_type = models.CharField(max_length=200, verbose_name='系统类型', blank=True, null=True)
     sys = models.CharField(max_length=32,verbose_name='系统版本', blank=True, null=True)
-    cpu_info = models.IntegerField(verbose_name='CPU信息', blank=True, null=True)
+    cpu_info = models.CharField(max_length=128,verbose_name='CPU信息', blank=True, null=True)
     hostname = models.CharField(max_length=200, verbose_name='主机名', blank=True, null=True)
     memory = models.IntegerField(verbose_name='内存大小', blank=True, null=True)
     ctime = models.DateTimeField(default=datetime.now, verbose_name='创建时间')

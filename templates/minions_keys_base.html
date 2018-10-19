@@ -1,0 +1,102 @@
+{%  extends 'base.html' %}
+
+{% block title %}MinionKey{% endblock %}
+
+{% block content %}
+    <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-10">
+                    <h2>minionsKeys列表页</h2>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="{% url 'index' %}">Home</a>
+                        </li>
+                        <li class="breadcrumb-item active">
+                            <strong>MinionKeys管理</strong>
+                        </li>
+                    </ol>
+                </div>
+                <div class="col-lg-2">
+
+                </div>
+            </div>
+           <div class="row ">
+    <div class="col-lg-3 salt_key_tag"   >
+
+        <div class="list-group " >
+            <div class="list-group-item  active" style="background-color: #337A5C;">
+                <h4 class="list-group-item-heading " style="position: relative">
+                    已认证KEYS<button  type="button" class="btn btn-info pull-right saltkey_unaccepted" style="padding: 0 12px;" onclick='window.location.href="{% url 'salt:key_accpted' %}"'>
+                    详细查询</button>
+                </h4>
+            </div>
+            <ul class="list-group">
+            <li class="list-group-item list-group-item-success" style="font-size: 17px;"><span class="badge" style="background-color: #337A5C;font-size: 17px;">{{ accepted_count }}</span>主机数量：</li>
+            </ul>
+             <a href="{% url 'salt:key_accpted' %}" style="position: absolute;z-index: 2; top: 0;left: 0;right: 0;bottom: 0;"></a>
+        </div>
+
+    </div>
+    <div class="col-lg-3 salt_key_tag" >
+
+         <div class="list-group ">
+            <div class="list-group-item  active" style="background-color: #337ACD;">
+                <h4 class="list-group-item-heading ">
+                    待认证KEYS<button type="button" class="btn btn-info pull-right saltkey_unaccepted" style="padding: 0 12px;" onclick='window.location.href="{% url 'salt:key_unaccpted' %}"'>
+                    详细查询</button>
+                </h4>
+            </div>
+            <ul class="list-group">
+            <li class="list-group-item list-group-item-success" style="font-size: 17px;"><span class="badge" style="background-color: #337ACD;font-size: 17px;">{{ unaccepted_count }}</span>主机数量：</li>
+            </ul>
+             <a href="{% url 'salt:key_unaccpted' %}" style="position: absolute;z-index: 2; top: 0;left: 0;right: 0;bottom: 0;"></a>
+        </div>
+    </div>
+    <div class="col-lg-3 salt_key_tag" >
+         <div class="list-group ">
+            <div class="list-group-item  active" style="background-color: burlywood;">
+                <h4 class="list-group-item-heading ">
+                    未被允许KEYS<button type="button" class="btn btn-info pull-right saltkey_denied" style="padding: 0 12px;" onclick='window.location.href="{% url 'salt:key_denied' %}"'>
+                    详细查询</button>
+                </h4>
+            </div>
+            <ul class="list-group">
+            <li class="list-group-item list-group-item-success" style="font-size: 17px;"><span class="badge" style="background-color: burlywood;font-size: 17px;">{{ denied_count }}</span>主机数量：</li>
+            </ul>
+             <a href="{% url 'salt:key_denied' %}" style="position: absolute;z-index: 2; top: 0;left: 0;right: 0;bottom: 0;"></a>
+        </div>
+    </div>
+    <div class="col-lg-3 salt_key_tag">
+         <div class="list-group ">
+            <div class="list-group-item  active" style="background-color: brown;">
+                <h4 class="list-group-item-heading ">
+                    已拒绝KEYS<button type="button" class="btn btn-info pull-right saltkey_rejected" style="padding: 0 12px;" onclick='window.location.href="#"'>
+                    详细查询
+                </button>
+                </h4>
+            </div>
+            <ul class="list-group">
+            <!--<li class="list-group-item list-group-item-warning"><span class="badge">2017-06-06-17:30</span>最近更新时间：</li>-->
+            <li class="list-group-item list-group-item-success" style="font-size: 17px;"><span class="badge" style="background-color: brown;font-size: 17px;">{{ rejected_count }}</span>主机数量：</li>
+            </ul>
+             <a href="#" style="position: absolute;z-index: 2; top: 0;left: 0;right: 0;bottom: 0;"></a>
+        </div>
+    </div>
+</div>
+        <div class="row ">
+        <div class="col-lg-12 "  >
+             <div class="form-inline" role="form">
+                <nav class="navbar navbar-default" role="navigation">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <span class="navbar-brand" style="color: #0063DC;background-color: azure">全局操作：</span>
+                        </div>
+                        <button type="button" class="btn btn-primary navbar-btn flush_salt_key">刷新KEY列表</button>
+                        <button type="button" class="btn btn-primary navbar-btn accept_all_key" data-toggle="tooltip" title="由于官方api功能不完善只能接受所有已认证、待认证的KEY，include-rejected等功能无效">接受所有KEY</button>
+                        <button type="button" class="btn btn-danger navbar-btn delete_all_key" data-toggle="tooltip" title="未被允许的KEY无法被全局删除">删除所有KEY</button>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+{% block custom_content %}{% endblock %}
+{% endblock %}
